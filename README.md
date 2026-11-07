@@ -8,25 +8,34 @@ Built to eliminate AI slop, optimize context windows, and enforce rigorous activ
 
 ## The Skills
 
-### 1. `exam-code`
+### 1. `exam-code` (v1.1.0)
 *Brevity, anti-slop, and comment-free code protocol for tests, exams, and coding assessments.*
 
-- **Zero-Comment Enforcement**: Completely bans AI comment clutter (`// initialize x`, `/* helper */`). Clean, minimal, readable code only.
-- **Shortest Working Form**: Standard library only. No bloated enterprise patterns, no factory classes, no unnecessary imports.
-- **On-Demand Breakdown (`explain`)**: Dissects code line-by-line in plain English on command, detailing why each line exists and the exact questions examiners ask in vivas or interviews.
-- **Modes**: `code` (default raw output), `explain` (line-by-line viva breakdown), `complexity` (time/space mathematical proofs).
+- **Zero-Comment Default**: Completely bans inline comment clutter (`// initialize counter`, `# loop through`). Output is pure, minimal code ready for test portals.
+- **Viva Armor Protocol**: On-demand oral examination defense script. Details the top trap questions examiners ask, complexity proofs, and the exact verbal responses students should recite.
+- **Anti-AI Fingerprint Enforcement**: Eliminates robotic LLM tells (overly defensive null checks, weird naming, generic helper functions) to produce authentic, human student code.
+- **Multilingual Support**: Tailored exam idioms for **Python, C++, Java, C, JavaScript/TypeScript, and SQL**.
+- **Modes**: `code` (default raw output), `explain` (line-by-line breakdown), `viva` (oral defense script), `complexity` (time/space mathematical proofs).
+- **References**:
+  - [`reference/viva-armor.md`](skills/exam-code/reference/viva-armor.md) - Oral exam and viva voce defense templates.
+  - [`reference/anti-ai-fingerprint.md`](skills/exam-code/reference/anti-ai-fingerprint.md) - Rules for human student code authenticity.
+  - [`reference/multilingual-idioms.md`](skills/exam-code/reference/multilingual-idioms.md) - Fast I/O and standard-library templates.
 
-### 2. `syllabus-master`
+### 2. `syllabus-master` (v1.1.0)
 *Adaptive active-recall and syllabus mastery engine for dense PDFs and exam outlines.*
 
+- **100 Evidence-Based Cognitive Techniques**: Houses an encyclopedic reference of 100 learning protocols with researcher citations (Dunlosky, Ebbinghaus, Feynman, Sweller, Leitner, Bjork, Ausubel, Paivio).
+- **Domain-Aware Routing**: Automatically detects whether a syllabus is STEM, Medical/Bio, Law/Humanities, or Language/Vocab, and pairs it with the optimal cognitive protocol.
 - **Context-Compressor**: Strips bureaucratic filler from large syllabi and textbook outlines, generating an indexed topic matrix that saves up to 80% of prompt tokens while retaining 100% of testable knowledge.
-- **Technique Diagnostics**: Evaluates the student across 4 proven cognitive learning protocols (Feynman Technique, Active Recall, Pomodoro Drills, Analogy Anchoring) and locks in the technique yielding the highest retention.
 - **The 4-Tier Exam Ladder**: Drills topics through 4 rigorous difficulty tiers:
   - *Tier 1*: Foundation (Direct Concept & MCQ)
   - *Tier 2*: Intermediate (Applied Scenarios & Problems)
   - *Tier 3*: Advanced (Common Exam Traps & Edge Cases)
   - *Tier 4*: University Exam Synthesis (Multi-concept long questions)
-- **Persistent Coverage Ledger**: Tracks mastery across every subtopic until 100% of the syllabus is cleared.
+- **Live Mastery Ledger**: Maintains a persistent ASCII checklist (`[X] Mastered`, `[>] In-Progress`, `[ ] Pending`) until the entire syllabus is cleared.
+- **References**:
+  - [`reference/100-cognitive-techniques.md`](skills/syllabus-master/reference/100-cognitive-techniques.md) - Complete catalog of 100 learning techniques.
+  - [`reference/techniques.md`](skills/syllabus-master/reference/techniques.md) - Detailed execution rules for core protocols.
 
 ---
 
@@ -100,15 +109,21 @@ Constraints Handled: Negative numbers, zero sum, empty match.
 ```
 
 **Follow-up Prompt:**
-> explain
+> /exam viva
 
 **Response:**
 ```text
-Line 2: seen = {0: -1}
-- What it does: Initializes a hash map storing prefix sums mapped to their earliest index.
-- Why it is there: Needed so subarrays starting from index 0 can be measured accurately.
-- Examiner Tip: Expect to be asked why the initial value is -1 instead of 0.
-...
+============================================================
+VIVA ARMOR: DEFENSE PLAYBOOK
+============================================================
+1. Examiner: "Why use a hash map instead of checking all subarrays?"
+   Your Answer: "Checking all subarrays requires O(N^2) time with two loops. 
+   Using a prefix sum hash map achieves O(N) linear time with a single pass."
+
+2. Examiner: "Why is seen[0] initialized to -1?"
+   Your Answer: "To handle the boundary condition where a valid subarray 
+   starts at index 0. Without -1, any prefix sum exactly matching k from 
+   the start would calculate index - 0 = index instead of index + 1."
 ```
 
 ---
@@ -128,13 +143,9 @@ MODULE 2: CPU Scheduling & Synchronization (Topics 2.1 - 2.5)
 MODULE 3: Deadlocks & Memory Management (Topics 3.1 - 3.4)
 
 ============================================================
-COGNITIVE DIAGNOSTIC
+COGNITIVE DIAGNOSTIC (Domain: STEM / Systems)
 ============================================================
-Before we drill, let us identify your highest-retention learning technique:
-1. Feynman Technique (Teach-back & gap discovery)
-2. Active Recall (Closed-book rapid retrieval)
-3. Pomodoro Drill Cycles (20m sprint + 5m quiz)
-4. Analogy Anchoring (Physical world mappings)
+Recommended Protocol: #43 Faded Worked Examples + #31 Inversion Testing.
 
 To calibrate your baseline, solve this 1-minute question on Topic 1.1:
 What is the fundamental difference between a Process Control Block (PCB) 
@@ -149,15 +160,19 @@ and a Thread Control Block (TCB) in terms of memory sharing?
 student-skills/
 ├── skills/
 │   ├── exam-code/
-│   │   ├── SKILL.md                 # Core exam code playbook
+│   │   ├── SKILL.md                          # Core exam code & viva playbook
 │   │   └── reference/
-│   │       └── clean-idioms.md      # Language-specific exam snippets
+│   │       ├── clean-idioms.md               # Clean language snippets
+│   │       ├── viva-armor.md                 # Oral exam defense scripts
+│   │       ├── anti-ai-fingerprint.md        # Authentic student style guide
+│   │       └── multilingual-idioms.md        # Python, C++, Java, C, JS, SQL
 │   └── syllabus-master/
-│       ├── SKILL.md                 # Active recall & syllabus engine
+│       ├── SKILL.md                          # Active recall & syllabus engine
 │       └── reference/
-│           └── techniques.md        # Cognitive protocol guidelines
-├── LICENSE                          # MIT License
-└── README.md                        # Documentation
+│           ├── 100-cognitive-techniques.md   # Comprehensive 100-technique library
+│           └── techniques.md                 # Core protocol guidelines
+├── LICENSE                                   # MIT License
+└── README.md                                 # Documentation
 ```
 
 ---
